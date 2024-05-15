@@ -1,0 +1,92 @@
+.profileWrapper {
+  padding: 1rem;
+}
+.profileTop {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+
+  h1 {
+    color: $text-color;
+    @include font(1.5rem, 1.75rem, 400);
+  }
+
+  button {
+    padding: 1rem;
+    background-color: inherit;
+    border: none;
+    svg {
+      color: $text-color;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+.userInfo {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+p {
+  margin: 0;
+  color: $text-color;
+  @include font(1rem, 1.25rem, 400);
+  display: inline-block;
+}
+
+label {
+  @include font(1em, 1.25rem, 400, italic);
+  color: $subText-color;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+  border: 1px solid #7d8699;
+  background-color: inherit;
+  color: $text-color;
+  @include font(1em, 1.25rem, 400, italic);
+
+  &:active,
+  &:focus-visible {
+    outline: 1px solid lightblue;
+    //   box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+    //   -webkit-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+    //   -moz-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+  }
+
+  &::placeholder {
+    font-size: 1em;
+  }
+}
+
+.userActions {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+button {
+  border: 1px solid #d7dae0;
+  color: #a8aebd;
+  @include font(1rem, 1.25rem, 600);
+  box-sizing: border-box;
+  background-color: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #15357a;
+    color: #15357a;
+  }
+  &:active {
+    border: 1px solid #15357a;
+    color: #fff;
+    background-color: #15357a;
+  }
+}

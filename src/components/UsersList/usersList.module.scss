@@ -1,0 +1,79 @@
+.listContainer {
+  position: relative;
+  flex-grow: 1;
+}
+.listWrapper {
+  width: 100%;
+  height: calc(94dvh - 15.2rem);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  background-color: $background-card;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+p {
+  margin: 1rem;
+  color: $subText-color;
+  @include font(1rem, 1.25rem, 400);
+}
+
+.list {
+  width: 100%;
+  height: max-content;
+
+  thead {
+    box-sizing: border-box;
+    padding-top: 1rem;
+
+    tr {
+      padding: 1rem;
+      border-bottom: 1px solid #d7dae0;
+    }
+    th {
+      text-align: left;
+      padding: 0.5rem;
+      background-color: $background-card;
+      @include font(1rem, 1.25rem, 600);
+      color: $text-color;
+    }
+  }
+  tbody {
+    tr {
+      padding: 1rem;
+      border-bottom: 1px solid #d7dae0;
+    }
+    td {
+      padding: 0.5rem;
+      @include font(0.8rem, 1.25rem, 400);
+      color: $text-color;
+    }
+  }
+}
+
+.profileContainer {
+  position: absolute;
+  bottom: 0;
+  right: -1rem;
+  height: 90dvh;
+  width: 40dvw;
+  background-color: $background-card;
+  border: 1px solid #d7dae0;
+  border-radius: 0.5rem;
+  transform: translateX(100%);
+  // transition: 2s;
+}
+.profileContainerActive {
+  position: absolute;
+  bottom: 0;
+  right: -1rem;
+  height: 90dvh;
+  width: 40dvw;
+  background-color: $background-card;
+  border: 1px solid #d7dae0;
+  border-radius: 0.5rem;
+  transform: translateX(0);
+  transition: 1s;
+}
