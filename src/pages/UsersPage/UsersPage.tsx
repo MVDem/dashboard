@@ -1,33 +1,37 @@
 import { useEffect, useState } from 'react';
 import { requests } from '../../server/service/users';
 import { User } from '../../types/User';
-import UsersList from '../../components/UsersList/UsersList';
+import UsersListCard from '../../components/UsersListCard/UsersList';
+import PaginationCard from '../../components/PaginationCard/PaginationCard';
+import SearchCard from '../../components/SearchCard/SearchCard';
+import { SearchParams } from '../../types/SearchParams';
+import AnimatedCard from '../../components/AnimatedCard/AnimatedCard';
+import { Outlet, useLocation } from 'react-router-dom';
 import styles from './usersPage.module.scss';
-import SearchUsersForm from '../../components/SearchUsersForm/SearchUsersForm';
-
-interface SearchParams {
-  searchMethod: string;
-  searchValue?: string;
-}
 
 function UsersPage() {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [users, setUsers] = useState<User[]>();
+  const [users, setUsers] = useState<User[]>([]);
   const [searchParam, setSearchParam] = useState<SearchParams>({
     searchMethod: 'all',
+    pagination: {
+      page: 1,
+      limit: 10,
+      numberOfUsers: users?.length,
+    },
   });
 
   useEffect(() => {
     getData();
-  }, [page, limit, searchParam]);
+  }, [searchParam]);
 
   const getData = async (param = searchParam) => {
     switch (param.searchMethod) {
       case 'all':
-        requests.getUsers(page, limit).then((data) => {
-          setUsers(data);
-        });
+        requests
+          .getUsers(searchParam.pagination.page, searchParam.pagination.limit)
+          .then((data) => {
+            setUsers(data);
+          });
         break;
       case 'email':
         requests.getUserByEmail(param.searchValue!).then((data) => {
@@ -50,32 +54,20 @@ function UsersPage() {
     }
   };
 
-  return (
-    <>
-      <SearchUsersForm setSearchParam={setSearchParam} />
-      <div className={styles.pageSettings}>
-        <button
-          onClick={() => setPage((prev) => prev - 1)}
-          disabled={page === 1}
-        >
-          prev
-        </button>
-        <p>{page}</p>
-        <button
-          onClick={() => setPage((prev) => prev + 1)}
-          disabled={users?.length! < limit}
-        >
-          next
-        </button>
-        <select onChange={(e) => setLimit(+e.target.value)}>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
+  const { pathname } = useLocation();
 
-      <UsersList users={users!} getData={getData} />
-    </>
+  return (
+    <div className={styles.container}>
+      <SearchCard setSearchParam={setSearchParam} />
+      <PaginationCard
+        setSearchParam={setSearchParam}
+        searchParam={searchParam}
+      />
+      <UsersListCard users={users!} />
+      <AnimatedCard start={pathname.replace('/users', '').length > 0}>
+        <Outlet context={{ users, getData }} />
+      </AnimatedCard>
+    </div>
   );
 }
 export default UsersPage;

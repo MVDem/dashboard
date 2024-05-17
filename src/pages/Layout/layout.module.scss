@@ -60,7 +60,7 @@
   gap: 1rem;
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: $active-link-background-color;
     color: $active-text-color;
   }
 }
@@ -71,7 +71,7 @@
 }
 
 .sideBar .link .active {
-  background-color: #f0f0f0;
+  background-color: $active-link-background-color;
   color: $active-text-color;
 }
 
@@ -86,7 +86,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: $active-link-background-color;
     color: $active-text-color;
   }
 }

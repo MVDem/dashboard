@@ -1,17 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+import { ButtonUI } from '../../UI';
 import { User } from '../../types/User';
-import styles from './usersListItem.module.scss';
 
-function UsersListItem({
-  user,
-  getData,
-  setIsProfileOpen,
-  setSelectedUser,
-}: {
+type UsersListItemProps = {
   user: User;
-  getData: () => void;
-  setIsProfileOpen: (value: boolean) => void;
-  setSelectedUser: (value: User | null) => void;
-}) {
+};
+
+function UsersListItem({ user }: UsersListItemProps) {
+  const navigate = useNavigate();
+  const handleProfileClick = () => {
+    navigate(`/users/profile/${user.id}`);
+  };
+
   return (
     <>
       <tr>
@@ -29,15 +29,7 @@ function UsersListItem({
           <p>{user.dob}</p>
         </td>
         <td>
-          <button
-            className={styles.profileButton}
-            onClick={() => {
-              setSelectedUser(user);
-              setIsProfileOpen(true);
-            }}
-          >
-            profile
-          </button>
+          <ButtonUI onClick={handleProfileClick}>profile111</ButtonUI>
         </td>
       </tr>
     </>

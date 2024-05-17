@@ -14,12 +14,6 @@
   overflow: auto;
 }
 
-p {
-  margin: 1rem;
-  color: $subText-color;
-  @include font(1rem, 1.25rem, 400);
-}
-
 .list {
   width: 100%;
   height: max-content;
@@ -30,7 +24,7 @@ p {
 
     tr {
       padding: 1rem;
-      border-bottom: 1px solid #d7dae0;
+      border-bottom: 1px solid $table-border-color;
     }
     th {
       text-align: left;
@@ -43,37 +37,12 @@ p {
   tbody {
     tr {
       padding: 1rem;
-      border-bottom: 1px solid #d7dae0;
+      border-bottom: 1px solid $table-border-color;
     }
     td {
       padding: 0.5rem;
-      @include font(0.8rem, 1.25rem, 400);
+      @include font(1rem, 1.25rem, 400);
       color: $text-color;
     }
   }
-}
-
-.profileContainer {
-  position: absolute;
-  bottom: 0;
-  right: -1rem;
-  height: 90dvh;
-  width: 40dvw;
-  background-color: $background-card;
-  border: 1px solid #d7dae0;
-  border-radius: 0.5rem;
-  transform: translateX(100%);
-  // transition: 2s;
-}
-.profileContainerActive {
-  position: absolute;
-  bottom: 0;
-  right: -1rem;
-  height: 90dvh;
-  width: 40dvw;
-  background-color: $background-card;
-  border: 1px solid #d7dae0;
-  border-radius: 0.5rem;
-  transform: translateX(0);
-  transition: 1s;
 }

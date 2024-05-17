@@ -41,10 +41,19 @@ function SignPage() {
         <div className={styles.signWrapper}>
           <h1 className={styles.title}>{signinMethods[signMethod]}</h1>
           <h2 className={styles.subTitle}>Welcome to dashboard!</h2>
-          <form className={styles.signForm} onSubmit={(e) => handlerSubmit(e)}>
+          <form
+            id="Sign-Form"
+            className={styles.signForm}
+            onSubmit={(e) => handlerSubmit(e)}
+          >
             <label>
               <p>Login</p>
-              <input type="text" name="username" placeholder="Username" />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                autoComplete="admin"
+              />
             </label>
             <label>
               <p>Password</p>

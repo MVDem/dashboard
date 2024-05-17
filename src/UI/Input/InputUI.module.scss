@@ -1,0 +1,27 @@
+.customInput {
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+  border: 1px solid #7d8699;
+  background-color: inherit;
+  color: $text-color;
+  @include font(1rem, 1.25rem, 400, italic);
+
+  &:active,
+  &:focus-visible {
+    outline: 1px solid lightblue;
+    //   box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+    //   -webkit-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+    //   -moz-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
+  }
+
+  &::placeholder {
+    font-size: 1em;
+  }
+}
+
+.customLabel {
+  @include font(1em, 1.25rem, 400, italic);
+  color: $subText-color;
+}

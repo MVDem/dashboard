@@ -1,0 +1,17 @@
+.pageSettings {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: $background-card;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+
+  p {
+    color: $text-color;
+    @include font(1rem, 1.25rem, 600);
+  }
+}
