@@ -1,10 +1,11 @@
 .listContainer {
-  position: relative;
+  grid-area: usersListCard;
+  // position: relative;
   flex-grow: 1;
 }
 .listWrapper {
   width: 100%;
-  height: calc(94dvh - 15.2rem);
+  height: calc(94dvh - 13.2rem);
   display: flex;
   flex-wrap: wrap;
   padding: 0 1rem;
@@ -12,6 +13,7 @@
   border-radius: 0.5rem;
   box-sizing: border-box;
   overflow: auto;
+  transition: background-color 0.25s linear;
 }
 
 .list {
@@ -29,9 +31,10 @@
     th {
       text-align: left;
       padding: 0.5rem;
-      background-color: $background-card;
       @include font(1rem, 1.25rem, 600);
       color: $text-color;
+      background-color: $background-card;
+      transition: color 0.25s linear, background-color 0.25s linear;
     }
   }
   tbody {
@@ -43,6 +46,7 @@
       padding: 0.5rem;
       @include font(1rem, 1.25rem, 400);
       color: $text-color;
+      transition: color 0.25s linear;
     }
   }
 }

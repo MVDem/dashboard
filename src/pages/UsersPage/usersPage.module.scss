@@ -4,4 +4,12 @@
   height: calc(100dvh - 4.5rem - 1rem);
   position: relative;
   overflow: hidden;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content max-content 1fr;
+  grid-template-areas:
+    'searchCard     searchCard'
+    'paginationCard addUserCard'
+    'usersListCard  usersListCard';
 }

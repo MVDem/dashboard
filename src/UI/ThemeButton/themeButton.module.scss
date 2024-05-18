@@ -1,0 +1,19 @@
+.themeBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background-color: $active-link-background-color;
+  color: $active-text-color;
+  transition: color 0.25s linear, background-color 0.25s linear;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

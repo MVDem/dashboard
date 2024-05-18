@@ -36,6 +36,7 @@ function SearchCard({
           ]}
         />
         <InputUI name="searchValue" placeholder="Search" type="text" />
+        {errorForm && <ErrorDisplay text={errorForm} />}
         <ButtonUI type="submit">Search</ButtonUI>
         <ButtonUI
           type="button"
@@ -49,7 +50,6 @@ function SearchCard({
           Reset
         </ButtonUI>
       </form>
-      {errorForm && <ErrorDisplay text={errorForm} />}
     </div>
   );
 }

@@ -29,7 +29,7 @@ function UsersListItem({ user }: UsersListItemProps) {
           <p>{user.dob}</p>
         </td>
         <td>
-          <ButtonUI onClick={handleProfileClick}>profile111</ButtonUI>
+          <ButtonUI onClick={handleProfileClick}>profile...</ButtonUI>
         </td>
       </tr>
     </>

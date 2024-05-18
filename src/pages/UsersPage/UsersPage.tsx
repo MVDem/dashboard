@@ -8,6 +8,7 @@ import { SearchParams } from '../../types/SearchParams';
 import AnimatedCard from '../../components/AnimatedCard/AnimatedCard';
 import { Outlet, useLocation } from 'react-router-dom';
 import styles from './usersPage.module.scss';
+import AddUserCard from '../../components/AddUserCard/AddUserCars';
 
 function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -19,36 +20,57 @@ function UsersPage() {
       numberOfUsers: users?.length,
     },
   });
+  console.log('searchParam', searchParam, users);
 
   useEffect(() => {
     getData();
-  }, [searchParam]);
+  }, []);
 
   const getData = async (param = searchParam) => {
     switch (param.searchMethod) {
       case 'all':
-        requests
-          .getUsers(searchParam.pagination.page, searchParam.pagination.limit)
-          .then((data) => {
-            setUsers(data);
-          });
+        const result = await requests.getUsers(
+          searchParam.pagination.page,
+          searchParam.pagination.limit
+        );
+        setUsers(result);
+        setSearchParam((prev) => {
+          return {
+            ...prev,
+            pagination: {
+              ...prev.pagination,
+              numberOfUsers: result?.length,
+            },
+          };
+        });
+
         break;
       case 'email':
-        requests.getUserByEmail(param.searchValue!).then((data) => {
-          if (data) {
-            setUsers([data]);
-          } else {
-            setUsers([]);
-          }
+        const result1 = await requests.getUserByEmail(param.searchValue!);
+        if (!result1) return setUsers([]);
+        setUsers([result1]);
+        setSearchParam((prev) => {
+          return {
+            ...prev,
+            pagination: {
+              ...prev.pagination,
+              numberOfUsers: 1,
+            },
+          };
         });
         break;
       case 'id':
-        requests.getUserById(param.searchValue!).then((data) => {
-          if (data) {
-            setUsers([data]);
-          } else {
-            setUsers([]);
-          }
+        const result2 = await requests.getUserById(param.searchValue!);
+        if (!result2) return setUsers([]);
+        setUsers([result2]);
+        setSearchParam((prev) => {
+          return {
+            ...prev,
+            pagination: {
+              ...prev.pagination,
+              numberOfUsers: 1,
+            },
+          };
         });
         break;
     }
@@ -63,6 +85,7 @@ function UsersPage() {
         setSearchParam={setSearchParam}
         searchParam={searchParam}
       />
+      <AddUserCard />
       <UsersListCard users={users!} />
       <AnimatedCard start={pathname.replace('/users', '').length > 0}>
         <Outlet context={{ users, getData }} />
