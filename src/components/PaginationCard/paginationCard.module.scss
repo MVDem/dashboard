@@ -1,0 +1,25 @@
+.pageSettings {
+  grid-area: paginationCard;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: $background-card-paginationCard;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  transition: background-color 0.25s linear;
+
+  p {
+    color: $text-color;
+    transition: color 0.25s linear;
+    @include font(1rem, 1.25rem, 600);
+    transition: color 0.25s linear;
+  }
+  button,
+  select {
+    height: 100%;
+    padding: 0 1rem;
+  }
+}

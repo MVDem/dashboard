@@ -1,0 +1,18 @@
+.addUser {
+  grid-area: addUserCard;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: $background-card-addUserCard;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  transition: background-color 0.25s linear;
+
+  Button {
+    height: 100%;
+    padding: 0 1rem;
+  }
+}

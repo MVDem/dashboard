@@ -1,0 +1,22 @@
+.searchContainer {
+  // min-height: 4.5rem;
+  grid-area: searchCard;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: $background-card-searchCard;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s linear;
+
+  form {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+
+  label {
+    flex-grow: 1;
+  }
+}

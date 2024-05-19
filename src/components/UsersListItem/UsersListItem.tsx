@@ -1,26 +1,36 @@
+import { useNavigate } from 'react-router-dom';
+import { ButtonUI } from '../../UI';
 import { User } from '../../types/User';
-import styles from './usersListItem.module.scss';
+import { TranslateContext } from '../../tranclations/context';
+import { useContext } from 'react';
+import { getTranclation } from '../../tranclations/utils';
 
-function UsersListItem({
-  user,
-  getData,
-  setIsProfileOpen,
-  setSelectedUser,
-}: {
+type UsersListItemProps = {
   user: User;
-  getData: () => void;
-  setIsProfileOpen: (value: boolean) => void;
-  setSelectedUser: (value: User | null) => void;
-}) {
+};
+
+function UsersListItem({ user }: UsersListItemProps) {
+  const navigate = useNavigate();
+  const { language, selectedLanguage } = useContext(TranslateContext);
+  const currentTarget = {
+    language,
+    page: '/users',
+    block: 'usersListItem',
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/users/profile/${user.id}`);
+  };
+
   return (
     <>
       <tr>
         <td>{user.id}</td>
         <td>
-          <p>{user.firstName}</p>
+          <p>{user[`firstName_${selectedLanguage!}`]}</p>
         </td>
         <td>
-          <p>{user.lastName}</p>
+          <p>{user[`lastName_${selectedLanguage!}`]}</p>
         </td>
         <td>
           <p>{user.email}</p>
@@ -29,15 +39,12 @@ function UsersListItem({
           <p>{user.dob}</p>
         </td>
         <td>
-          <button
-            className={styles.profileButton}
-            onClick={() => {
-              setSelectedUser(user);
-              setIsProfileOpen(true);
-            }}
-          >
-            profile
-          </button>
+          <ButtonUI onClick={handleProfileClick}>
+            {getTranclation({
+              ...currentTarget,
+              name: 'btn',
+            })}
+          </ButtonUI>
         </td>
       </tr>
     </>

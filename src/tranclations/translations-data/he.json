@@ -1,0 +1,58 @@
+{
+  "HE": {
+    "dir": "rtl",
+    "pages": {
+      "/sign": {
+        "title": {
+          "greetings": "ברוכים הבאים ללוח המחוונים!",
+          "sign_in": "להתחבר",
+          "sign_up": "הירשם",
+          "isRegistered": "כבר יש לך חשבון?",
+          "isNotRegistered": "אין לך חשבון?"
+        },
+        "form": {
+          "user_name": "שם משתמש",
+          "password": "סיסמה",
+          "error": "שם המשתמש או הסיסמה שגויים"
+        }
+      },
+      "/": {
+        "header": {
+          "logo": "לוּחַ מַחווָנִים"
+        },
+        "nav": {
+          "home": "דף הבית",
+          "users": "דף משתמשים",
+          "logout": "להתנתק"
+        }
+      },
+      "/users": {
+        "searchCard": {
+          "option_email": "חפש במייל",
+          "option_id": "חפש לפי מזהה",
+          "input_placeholder": "לחפש",
+          "submit_btn": "לחפש",
+          "reset_btn": "אִתחוּל"
+        },
+        "paginationCard": {
+          "prev": "קודם",
+          "next": "הַבָּא"
+        },
+        "addUserCard": {
+          "btn": "הוסף משתמש"
+        },
+        "usersListCard": {
+          "table_id": "הוסף משתמש",
+          "table_first_name": "שם פרטי",
+          "table_last_name": "שם משפחה",
+          "table_email": "אימייל",
+          "table_dob": "תאריך לידה",
+          "table_actions": "פעולות"
+        },
+        "usersListItem": {
+          "btn": "פּרוֹפִיל"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.listContainer {
+  grid-area: usersListCard;
+  // position: relative;
+  flex-grow: 1;
+}
+.listWrapper {
+  width: 100%;
+  height: calc(94dvh - 13.2rem);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  background-color: $background-card;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  overflow: auto;
+  transition: background-color 0.25s linear;
+}
+
+.list {
+  width: 100%;
+  height: max-content;
+
+  thead {
+    box-sizing: border-box;
+    padding-top: 1rem;
+
+    tr {
+      padding: 1rem;
+      border-bottom: 1px solid $table-border-color;
+    }
+    th {
+      text-align: initial;
+      padding: 0.5rem;
+      @include font(1rem, 1.25rem, 600);
+      color: $text-color;
+      background-color: $background-card;
+      transition: color 0.25s linear, background-color 0.25s linear;
+    }
+  }
+  tbody {
+    tr {
+      padding: 1rem;
+      border-bottom: 1px solid $table-border-color;
+    }
+    td {
+      padding: 0.5rem;
+      @include font(1rem, 1.25rem, 400);
+      color: $text-color;
+      transition: color 0.25s linear;
+    }
+  }
+}

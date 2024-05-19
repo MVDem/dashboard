@@ -1,0 +1,73 @@
+.sideBar {
+  grid-area: nav;
+  background-color: $background-sideBar;
+  transition: background-color 0.25s linear;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 0;
+
+  .topContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .link,
+  .linkActive {
+    text-align: start;
+    height: 3.3em;
+    @include font(1rem, 1.25rem, 400);
+    color: $text-color;
+    background-color: inherit;
+    transition: color 0.25s linear, background-color 0.25s linear;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &:hover {
+      background-color: $active-link-background-color;
+      color: $active-text-color;
+      transition: color 0.25s linear, background-color 0.25s linear;
+    }
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .linkActive {
+    background-color: $active-link-background-color;
+    color: $active-text-color;
+    transition: color 0.25s linear, background-color 0.25s linear;
+  }
+
+  .bottonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: start;
+    @include font(1.2rem, 1.25rem, 400);
+    color: $text-color;
+    transition: color 0.25s linear, background-color 0.25s linear;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $active-link-background-color;
+      color: $active-text-color;
+      transition: color 0.25s linear, background-color 0.25s linear;
+    }
+  }
+}

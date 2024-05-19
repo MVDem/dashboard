@@ -1,0 +1,24 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+$background-header: var(--bg-header);
+$background-sideBar: var(--bg-sideBar);
+$background-card: var(--bg-card);
+$background-card-searchCard: var(--bg-card-searchCard);
+$background-card-addUserCard: var(--bg-card-addUserCard);
+$background-card-paginationCard: var(--bg-card-paginationCard);
+$background-body: var(--bg-body);
+$text-color: var(--text);
+$subText-color: var(--subText);
+$active-text-color: var(--active-text);
+$table-border-color: var(--table-border);
+$active-link-color: var(--active-link-text);
+$active-link-background-color: var(--bg-active-link);
+$hover-btn-color: var(--hover-btn);
+
+@mixin font($size: 14px, $heght: 17px, $weight: 300, $style: medium) {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $heght;
+  font-style: $style;
+}

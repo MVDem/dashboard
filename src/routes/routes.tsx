@@ -5,6 +5,8 @@ import Layout from '../pages/Layout/Layout';
 import HomePage from '../pages/HomePage/HomePage';
 import Private from './PrivateRoutes';
 import UsersPage from '../pages/UsersPage/UsersPage';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import EditPage from '../pages/EditPage/EditPage';
 
 function Routing() {
   return (
@@ -15,10 +17,10 @@ function Routing() {
           <Route path="/sign" element={<SignPage />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Private element={<HomePage />} />} />
-            <Route
-              path="/users"
-              element={<Private element={<UsersPage />} />}
-            />
+            <Route path="/users" element={<Private element={<UsersPage />} />}>
+              <Route path="/users/profile/:id" element={<ProfilePage />} />
+              <Route path="/users/edit/:id" element={<EditPage />} />
+            </Route>
           </Route>
         </Routes>
       </Suspense>

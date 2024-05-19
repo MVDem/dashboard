@@ -1,81 +1,51 @@
 import { useEffect, useState } from 'react';
-import { requests } from '../../server/service/users';
 import { User } from '../../types/User';
-import UsersList from '../../components/UsersList/UsersList';
+import UsersListCard from '../../components/UsersListCard/UsersList';
+import PaginationCard from '../../components/PaginationCard/PaginationCard';
+import SearchCard from '../../components/SearchCard/SearchCard';
+import { SearchParams } from '../../types/SearchParams';
+import AnimatedCard from '../../components/AnimatedCard/AnimatedCard';
+import { Outlet, useLocation } from 'react-router-dom';
 import styles from './usersPage.module.scss';
-import SearchUsersForm from '../../components/SearchUsersForm/SearchUsersForm';
-
-interface SearchParams {
-  searchMethod: string;
-  searchValue?: string;
-}
+import AddUserCard from '../../components/AddUserCard/AddUserCars';
+import { requests } from '../../components/requests/service/users';
 
 function UsersPage() {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [users, setUsers] = useState<User[]>();
+  const [users, setUsers] = useState<User[]>([]);
+  const [numberOfUsers, setNumberOfUsers] = useState<number>(0);
   const [searchParam, setSearchParam] = useState<SearchParams>({
-    searchMethod: 'all',
+    pagination: {
+      page: 1,
+      limit: 10,
+    },
   });
 
   useEffect(() => {
     getData();
-  }, [page, limit, searchParam]);
+  }, [searchParam]);
 
   const getData = async (param = searchParam) => {
-    switch (param.searchMethod) {
-      case 'all':
-        requests.getUsers(page, limit).then((data) => {
-          setUsers(data);
-        });
-        break;
-      case 'email':
-        requests.getUserByEmail(param.searchValue!).then((data) => {
-          if (data) {
-            setUsers([data]);
-          } else {
-            setUsers([]);
-          }
-        });
-        break;
-      case 'id':
-        requests.getUserById(param.searchValue!).then((data) => {
-          if (data) {
-            setUsers([data]);
-          } else {
-            setUsers([]);
-          }
-        });
-        break;
-    }
+    const result = await requests.getUsers(param);
+    setUsers(result.users);
+    setNumberOfUsers(result.numberOfUsers);
   };
 
-  return (
-    <>
-      <SearchUsersForm setSearchParam={setSearchParam} />
-      <div className={styles.pageSettings}>
-        <button
-          onClick={() => setPage((prev) => prev - 1)}
-          disabled={page === 1}
-        >
-          prev
-        </button>
-        <p>{page}</p>
-        <button
-          onClick={() => setPage((prev) => prev + 1)}
-          disabled={users?.length! < limit}
-        >
-          next
-        </button>
-        <select onChange={(e) => setLimit(+e.target.value)}>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
+  const { pathname } = useLocation();
 
-      <UsersList users={users!} getData={getData} />
-    </>
+  return (
+    <div className={styles.container}>
+      <SearchCard setSearchParam={setSearchParam} />
+      <PaginationCard
+        numberOfUsers={numberOfUsers}
+        setSearchParam={setSearchParam}
+        searchParam={searchParam}
+      />
+      <AddUserCard />
+      <UsersListCard users={users!} />
+      <AnimatedCard start={pathname.replace('/users', '').length > 0}>
+        <Outlet context={{ users, getData }} />
+      </AnimatedCard>
+    </div>
   );
 }
 export default UsersPage;

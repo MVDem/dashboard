@@ -1,0 +1,153 @@
+:root {
+  --bg-header: #98bdff; /* Light Grey background for header */
+  --bg-sideBar: #f5f7ff; /* Lighter Grey background for sidebar */
+  --bg-card: #f5f7ff; /* White background for cards */
+  --bg-card-searchCard: #f5f7ff; /* White background for search card */
+  --bg-card-addUserCard: #f5f7ff; /* White background for add user card */
+  --bg-card-paginationCard: #f5f7ff; /* White background for pagination card */
+  --bg-body: #c8dbf3; /* Off-white background for body */
+  --bg-active-link: #4747a1; /* Slightly darker Grey for active link */
+  --text: #333333; /* Black text for readability */
+  --subText: #808080; /* Mid-grey for subtext */
+  --active-text: #ffffff; /* Blue for active text */
+  --table-border: #cccccc; /* Light Grey for table borders */
+  --hover-btn: #15357a; /* White background for button hover */
+  --active-link-text: #4747a1;
+}
+
+[data-theme='dark'] {
+  --bg-header: #25476a; /* Dark Charcoal background for header */
+  --bg-sideBar: #191c24; /* Slightly darker Charcoal background for sidebar */
+  --bg-card: #191c24; /* Dark Charcoal background for cards */
+  --bg-card-searchCard: #191c24; /* White background for search card */
+  --bg-card-addUserCard: #191c24; /* White background for add user card */
+  --bg-card-paginationCard: #191c24; /* White background for pagination card */
+  --bg-body: #000000; /* Black background for body */
+  --bg-active-link: #16302a; /* Darker Charcoal for active link */
+  --text: #c2c2c2; /* White text for readability */
+  --subText: #c2c2c2; /* Lighter grey for subtext */
+  --active-text: #05c454; /* Light Blue for active text */
+  --table-border: #7d9a9e; /* Greyish Teal for table borders (consider adjusting for better contrast) */
+  --hover-btn: #05c454; /* White background for button hover */
+  --active-link-text: #05c454;
+}
+
+//==============================
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers 
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}*/
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  overflow-x: hidden;
+}

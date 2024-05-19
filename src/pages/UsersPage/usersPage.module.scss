@@ -1,64 +1,15 @@
-.pageSettings {
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: $background-card;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.container {
+  width: calc(100dvw - 200px - 2rem);
+  box-sizing: border-box;
+  height: calc(100dvh - 4.5rem - 1rem);
+  position: relative;
+  overflow: hidden;
+  display: grid;
   gap: 1rem;
-
-  button {
-    border: 1px solid #d7dae0;
-    padding: 0 0.5em;
-    color: #a8aebd;
-    @include font(1rem, 1.25rem, 600);
-    box-sizing: border-box;
-    background-color: inherit;
-    border-radius: 0.5rem;
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid #15357a;
-      color: #15357a;
-    }
-    &:active {
-      border: 1px solid #15357a;
-      color: #fff;
-      background-color: #15357a;
-    }
-    &:disabled {
-      border: 1px solid #d7dae0;
-      color: #a8aebd;
-      cursor: not-allowed;
-    }
-  }
-
-  select {
-    padding: 0 0.5em;
-    box-sizing: border-box;
-    border-radius: 0.5em;
-    border: 1px solid #7d8699;
-    background-color: inherit;
-    color: $text-color;
-    @include font(1em, 1.25rem, 400, italic);
-
-    &:active,
-    &:focus-visible {
-      outline: 1px solid lightblue;
-      //   box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-      //   -webkit-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-      //   -moz-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-    }
-
-    &::placeholder {
-      font-size: 1em;
-    }
-  }
-  p {
-    color: #a8aebd;
-    @include font(1rem, 1.25rem, 600);
-  }
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content max-content 1fr;
+  grid-template-areas:
+    'searchCard     searchCard'
+    'paginationCard addUserCard'
+    'usersListCard  usersListCard';
 }

@@ -1,0 +1,6 @@
+.message {
+  margin: 0;
+  color: $text-color;
+  @include font(1rem, 1.25rem, 400);
+  display: inline-block;
+}

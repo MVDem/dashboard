@@ -1,0 +1,10 @@
+.error {
+  text-align: center;
+  color: red;
+  @include font(1rem, 1.25rem, 400, italic);
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: translateY(0.2rem);
+  }
+}
