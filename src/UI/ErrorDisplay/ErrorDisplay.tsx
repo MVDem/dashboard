@@ -3,14 +3,19 @@ import styles from './errorDisplay.module.scss';
 
 type ErrorDisplayProps = {
   text: string;
+  isVisible?: boolean;
 };
 
-function ErrorDisplay({ text }: ErrorDisplayProps) {
+function ErrorDisplay({ text, isVisible }: ErrorDisplayProps) {
   return (
-    <div className={styles.error}>
-      <BiError />
-      {text}
-    </div>
+    <>
+      {isVisible && (
+        <div className={styles.error}>
+          <BiError />
+          {text}
+        </div>
+      )}
+    </>
   );
 }
 export default ErrorDisplay;

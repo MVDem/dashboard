@@ -11,11 +11,9 @@ $text-color: var(--text);
 $subText-color: var(--subText);
 $active-text-color: var(--active-text);
 $table-border-color: var(--table-border);
+$active-link-color: var(--active-link-text);
 $active-link-background-color: var(--bg-active-link);
 $hover-btn-color: var(--hover-btn);
-
-$background-card-dark: black;
-$background-header-dark: black;
 
 @mixin font($size: 14px, $heght: 17px, $weight: 300, $style: medium) {
   font-family: 'SF Pro Display', sans-serif;

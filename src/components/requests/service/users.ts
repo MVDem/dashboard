@@ -2,7 +2,8 @@ import type { CreateUser, User } from '../types/User';
 import { encryptStr } from '../utils/encryptStr';
 import makeUUID from '../utils/makeUUID';
 import parseDate from '../utils/parseDate';
-import users from '../mocks/jsons/users.json';
+import users from '../mocks/jsons/users2.json';
+import { SearchParams } from '../../../types/SearchParams';
 // MOCK METHODS
 
 const USERS: User[] = [...users];
@@ -44,24 +45,29 @@ export const updateUser = async (
   return true;
 };
 
-// get a user by email
-export const getUserByEmail = async (
-  email: string
-): Promise<User | undefined> => {
-  return USERS.find((user) => user.email === email);
-};
-
-// get a user by id
-export const getUserById = async (id: string): Promise<User | undefined> => {
-  return USERS.find((user) => user.id === id);
-};
-
 // get users paginated
 export const getUsers = async (
-  page: number,
-  limit: number
-): Promise<User[]> => {
-  return USERS.slice((page - 1) * limit, page * limit);
+  params: SearchParams
+): Promise<{ users: User[]; numberOfUsers: number }> => {
+  let AllUsers: User[];
+  if (params.searchMethod) {
+    AllUsers = [
+      ...USERS.filter((user) => {
+        return user[params.searchMethod as keyof User]?.includes(
+          params.searchValue!
+        );
+      }),
+    ];
+  } else {
+    AllUsers = [...USERS];
+  }
+
+  const numberOfUsers = AllUsers.length;
+  const users = AllUsers.slice(
+    (params.pagination.page - 1) * params.pagination.limit,
+    params.pagination.page * params.pagination.limit
+  );
+  return { users, numberOfUsers };
 };
 
 // delete a user by id
@@ -77,8 +83,6 @@ export const deleteUserById = async (id: string): Promise<boolean> => {
 export const requests = {
   createUser,
   updateUser,
-  getUserByEmail,
-  getUserById,
   getUsers,
   deleteUserById,
 };

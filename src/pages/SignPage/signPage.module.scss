@@ -1,6 +1,8 @@
 .wrapper {
   display: flex;
   height: 100dvh;
+  background-color: $background-card;
+  transition: background-color 0.25s linear;
 }
 
 .signContainer {
@@ -21,11 +23,13 @@
   margin-bottom: 1rem;
   @include font(2rem, 2.75rem, 600);
   color: $text-color;
+  transition: color 0.25s linear;
 }
 
 .subTitle {
   @include font(1.25rem, 1.75rem, 500);
   color: $text-color;
+  transition: color 0.25s linear;
 }
 
 .signForm {
@@ -35,83 +39,36 @@
   margin: 2rem 0;
 }
 
-.signForm label {
-  @include font(1em, 1.25rem, 400, italic);
-  color: $subText-color;
-}
-
 .signForm input {
-  margin: 0.5rem 0;
-  width: 100%;
   height: 3.3rem;
-  padding: 1em;
-  box-sizing: border-box;
-  border-radius: 0.5em;
-  border: 1px solid #7d8699;
-  background-color: inherit;
-  @include font(1em, 1.25rem, 400, italic);
-
-  &:active,
-  &:focus-visible {
-    outline: 1px solid lightblue;
-    box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-    -webkit-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-    -moz-box-shadow: 0px -1px 12px 1px rgba(0, 85, 250, 0.28);
-  }
-
-  &::placeholder {
-    font-size: 1em;
-  }
-}
-
-.signForm .error {
-  color: red;
-  @include font(1em, 1.25rem, 400, italic);
 }
 
 .signForm button {
   height: 3.3em;
-  border: 2px solid #d7dae0;
-  color: #a8aebd;
-  @include font(1em, 1.25rem, 600);
-  box-sizing: border-box;
-  background-color: inherit;
-  border-radius: 0.5rem;
-  cursor: pointer;
-
-  &:hover {
-    border: 2px solid #15357a;
-    color: #15357a;
-  }
-  &:active {
-    border: 2px solid #15357a;
-    color: #fff;
-    background-color: #15357a;
-  }
 }
 
-.SignExtraBtn {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1rem;
-  box-sizing: border-box;
-}
-
-.SignExtraBtn button {
-  background-color: inherit;
+.extraBtn {
   border: none;
   cursor: pointer;
-  color: #a8aebd;
+  color: $subText-color;
+  background-color: inherit;
+  transition: color 0.25s linear, background-color 0.25s linear;
   @include font(1em, 1.25rem, 600);
   box-sizing: border-box;
   &:hover {
     border: none;
   }
+  span {
+    color: $active-link-color;
+    transition: color 0.25s linear;
+    box-sizing: border-box;
+  }
 }
 
-.SignExtraBtn button span {
-  color: $active-text-color;
+.settingsControls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
   box-sizing: border-box;
 }
 
@@ -119,7 +76,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  padding: 1rem;
+  padding: 4rem 1rem;
   box-sizing: border-box;
 }
 .signImagewrapper {

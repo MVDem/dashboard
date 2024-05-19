@@ -4,9 +4,9 @@ import { ButtonUI, InputUI } from '../../UI';
 import { useState } from 'react';
 import { User } from '../../types/User';
 import { OutletUsersContext } from '../ProfilePage/ProfilePage';
-import { requests } from '../../server/service/users';
 import DeleteMessage from '../../UI/DeleteMessage/DeleteMessage';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { requests } from '../../components/requests/service/users';
 
 const userKeys = ['firstName', 'lastName', 'email', 'dob'];
 

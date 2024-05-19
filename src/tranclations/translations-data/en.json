@@ -1,0 +1,58 @@
+{
+  "EN": {
+    "dir": "rtl",
+    "pages": {
+      "/sign": {
+        "title": {
+          "greetings": "Welcome to dashboard!",
+          "sign_in": "Sign in",
+          "sign_up": "Sign up",
+          "isRegistered": "Already have an account?",
+          "isNotRegistered": "Don't have an account?"
+        },
+        "form": {
+          "user_name": "User name",
+          "password": "Password",
+          "error": "user name or password is incorrect"
+        }
+      },
+      "/": {
+        "header": {
+          "logo": "DashBoard"
+        },
+        "nav": {
+          "home": "Home",
+          "users": "Users page",
+          "logout": "Logout"
+        }
+      },
+      "/users": {
+        "searchCard": {
+          "option_email": "Search by email",
+          "option_id": "Search by id",
+          "input_placeholder": "Search",
+          "submit_btn": "Search",
+          "reset_btn": "Reset"
+        },
+        "paginationCard": {
+          "prev": "Previous",
+          "next": "Next"
+        },
+        "addUserCard": {
+          "btn": "Add user"
+        },
+        "usersListCard": {
+          "table_id": "Add user",
+          "table_first_name": "First Name",
+          "table_last_name": "Last Name",
+          "table_email": "Email",
+          "table_dob": "Date of birth",
+          "table_actions": "Actions"
+        },
+        "usersListItem": {
+          "btn": "profile..."
+        }
+      }
+    }
+  }
+}

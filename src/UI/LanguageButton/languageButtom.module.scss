@@ -1,0 +1,17 @@
+.languageButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+  //   border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0;
+
+  img {
+    width: 1.5rem;
+    height: max-content;
+  }
+}

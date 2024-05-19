@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { ButtonUI } from '../../UI';
 import { User } from '../../types/User';
+import { TranslateContext } from '../../tranclations/context';
+import { useContext } from 'react';
+import { getTranclation } from '../../tranclations/utils';
 
 type UsersListItemProps = {
   user: User;
@@ -8,6 +11,13 @@ type UsersListItemProps = {
 
 function UsersListItem({ user }: UsersListItemProps) {
   const navigate = useNavigate();
+  const { language, selectedLanguage } = useContext(TranslateContext);
+  const currentTarget = {
+    language,
+    page: '/users',
+    block: 'usersListItem',
+  };
+
   const handleProfileClick = () => {
     navigate(`/users/profile/${user.id}`);
   };
@@ -17,10 +27,10 @@ function UsersListItem({ user }: UsersListItemProps) {
       <tr>
         <td>{user.id}</td>
         <td>
-          <p>{user.firstName}</p>
+          <p>{user[`firstName_${selectedLanguage!}`]}</p>
         </td>
         <td>
-          <p>{user.lastName}</p>
+          <p>{user[`lastName_${selectedLanguage!}`]}</p>
         </td>
         <td>
           <p>{user.email}</p>
@@ -29,7 +39,12 @@ function UsersListItem({ user }: UsersListItemProps) {
           <p>{user.dob}</p>
         </td>
         <td>
-          <ButtonUI onClick={handleProfileClick}>profile...</ButtonUI>
+          <ButtonUI onClick={handleProfileClick}>
+            {getTranclation({
+              ...currentTarget,
+              name: 'btn',
+            })}
+          </ButtonUI>
         </td>
       </tr>
     </>

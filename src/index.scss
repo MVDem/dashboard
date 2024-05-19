@@ -12,6 +12,7 @@
   --active-text: #ffffff; /* Blue for active text */
   --table-border: #cccccc; /* Light Grey for table borders */
   --hover-btn: #15357a; /* White background for button hover */
+  --active-link-text: #4747a1;
 }
 
 [data-theme='dark'] {
@@ -28,6 +29,7 @@
   --active-text: #05c454; /* Light Blue for active text */
   --table-border: #7d9a9e; /* Greyish Teal for table borders (consider adjusting for better contrast) */
   --hover-btn: #05c454; /* White background for button hover */
+  --active-link-text: #05c454;
 }
 
 //==============================

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './searchCard.module.scss';
 import { InputUI, SelectUI, ButtonUI, ErrorDisplay } from '../../UI';
 import { SearchParams } from '../../types/SearchParams';
+import { TranslateContext } from '../../tranclations/context';
+import { getTranclation } from '../../tranclations/utils';
 
 function SearchCard({
   setSearchParam,
@@ -9,6 +11,12 @@ function SearchCard({
   setSearchParam: React.Dispatch<React.SetStateAction<SearchParams>>;
 }) {
   const [errorForm, setErrorForm] = useState<string | null>(null);
+  const { language } = useContext(TranslateContext);
+  const currentTarget = {
+    language,
+    page: '/users',
+    block: 'searchCard',
+  };
 
   const hendleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,25 +27,41 @@ function SearchCard({
       setErrorForm('Search value is required');
       return;
     }
-    const newParam = { searchMethod, searchValue };
     setSearchParam((prev) => {
-      return { ...prev, newParam };
+      return { ...prev, searchMethod, searchValue };
     });
   };
+
+  const options = [
+    {
+      value: 'email',
+      label: getTranclation({ ...currentTarget, name: 'option_email' }),
+    },
+    {
+      value: 'id',
+      label: getTranclation({ ...currentTarget, name: 'option_id' }),
+    },
+  ];
 
   return (
     <div className={styles.searchContainer}>
       <form id="Search-Form" onSubmit={(event) => hendleSearchSubmit(event)}>
-        <SelectUI
-          name="searchMethod"
-          options={[
-            { value: 'email', label: 'Search by email' },
-            { value: 'id', label: 'Search by id' },
-          ]}
+        <SelectUI name="searchMethod" options={options} />
+        <InputUI
+          name="searchValue"
+          placeholder={getTranclation({
+            ...currentTarget,
+            name: 'input_placeholder',
+          })}
+          type="text"
         />
-        <InputUI name="searchValue" placeholder="Search" type="text" />
         {errorForm && <ErrorDisplay text={errorForm} />}
-        <ButtonUI type="submit">Search</ButtonUI>
+        <ButtonUI type="submit">
+          {getTranclation({
+            ...currentTarget,
+            name: 'submit_btn',
+          })}
+        </ButtonUI>
         <ButtonUI
           type="button"
           onClick={() => {
@@ -47,7 +71,10 @@ function SearchCard({
               setErrorForm(null);
           }}
         >
-          Reset
+          {getTranclation({
+            ...currentTarget,
+            name: 'reset_btn',
+          })}
         </ButtonUI>
       </form>
     </div>

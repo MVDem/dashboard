@@ -1,9 +1,8 @@
 export type SearchParams = {
-  searchMethod: string;
+  searchMethod?: string;
   searchValue?: string;
   pagination: {
     page: number;
     limit: number;
-    numberOfUsers: number;
   };
 };

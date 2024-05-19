@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { requests } from '../../server/service/users';
 import { User } from '../../types/User';
 import UsersListCard from '../../components/UsersListCard/UsersList';
 import PaginationCard from '../../components/PaginationCard/PaginationCard';
@@ -9,71 +8,26 @@ import AnimatedCard from '../../components/AnimatedCard/AnimatedCard';
 import { Outlet, useLocation } from 'react-router-dom';
 import styles from './usersPage.module.scss';
 import AddUserCard from '../../components/AddUserCard/AddUserCars';
+import { requests } from '../../components/requests/service/users';
 
 function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
+  const [numberOfUsers, setNumberOfUsers] = useState<number>(0);
   const [searchParam, setSearchParam] = useState<SearchParams>({
-    searchMethod: 'all',
     pagination: {
       page: 1,
       limit: 10,
-      numberOfUsers: users?.length,
     },
   });
-  console.log('searchParam', searchParam, users);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [searchParam]);
 
   const getData = async (param = searchParam) => {
-    switch (param.searchMethod) {
-      case 'all':
-        const result = await requests.getUsers(
-          searchParam.pagination.page,
-          searchParam.pagination.limit
-        );
-        setUsers(result);
-        setSearchParam((prev) => {
-          return {
-            ...prev,
-            pagination: {
-              ...prev.pagination,
-              numberOfUsers: result?.length,
-            },
-          };
-        });
-
-        break;
-      case 'email':
-        const result1 = await requests.getUserByEmail(param.searchValue!);
-        if (!result1) return setUsers([]);
-        setUsers([result1]);
-        setSearchParam((prev) => {
-          return {
-            ...prev,
-            pagination: {
-              ...prev.pagination,
-              numberOfUsers: 1,
-            },
-          };
-        });
-        break;
-      case 'id':
-        const result2 = await requests.getUserById(param.searchValue!);
-        if (!result2) return setUsers([]);
-        setUsers([result2]);
-        setSearchParam((prev) => {
-          return {
-            ...prev,
-            pagination: {
-              ...prev.pagination,
-              numberOfUsers: 1,
-            },
-          };
-        });
-        break;
-    }
+    const result = await requests.getUsers(param);
+    setUsers(result.users);
+    setNumberOfUsers(result.numberOfUsers);
   };
 
   const { pathname } = useLocation();
@@ -82,6 +36,7 @@ function UsersPage() {
     <div className={styles.container}>
       <SearchCard setSearchParam={setSearchParam} />
       <PaginationCard
+        numberOfUsers={numberOfUsers}
         setSearchParam={setSearchParam}
         searchParam={searchParam}
       />

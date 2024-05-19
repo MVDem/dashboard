@@ -29,7 +29,7 @@
       border-bottom: 1px solid $table-border-color;
     }
     th {
-      text-align: left;
+      text-align: initial;
       padding: 0.5rem;
       @include font(1rem, 1.25rem, 600);
       color: $text-color;

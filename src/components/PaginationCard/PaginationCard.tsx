@@ -1,14 +1,28 @@
+import { useContext } from 'react';
 import { ButtonUI, SelectUI } from '../../UI';
+import { TranslateContext } from '../../tranclations/context';
 import { SearchParams } from '../../types/SearchParams';
 import styles from './paginationCard.module.scss';
+import { getTranclation } from '../../tranclations/utils';
 
 type PaginationCardProps = {
   searchParam: SearchParams;
+  numberOfUsers: number;
   setSearchParam: React.Dispatch<React.SetStateAction<SearchParams>>;
 };
 
-function PaginationCard({ searchParam, setSearchParam }: PaginationCardProps) {
-  const { page, limit, numberOfUsers } = searchParam.pagination;
+function PaginationCard({
+  searchParam,
+  numberOfUsers,
+  setSearchParam,
+}: PaginationCardProps) {
+  const { page, limit } = searchParam.pagination;
+  const { language } = useContext(TranslateContext);
+  const currentTarget = {
+    language,
+    page: '/users',
+    block: 'paginationCard',
+  };
 
   const handleChange = (param: string, value: number) => {
     setSearchParam((prev) => {
@@ -29,14 +43,14 @@ function PaginationCard({ searchParam, setSearchParam }: PaginationCardProps) {
         onClick={() => handleChange('page', page - 1)}
         disabled={page === 1}
       >
-        Prev
+        {getTranclation({ ...currentTarget, name: 'prev' })}
       </ButtonUI>
       <p>{page}</p>
       <ButtonUI
         onClick={() => handleChange('page', page + 1)}
         disabled={numberOfUsers < page * limit}
       >
-        next
+        {getTranclation({ ...currentTarget, name: 'next' })}
       </ButtonUI>
       <SelectUI
         options={[
