@@ -51,6 +51,29 @@
         },
         "usersListItem": {
           "btn": "פּרוֹפִיל"
+        },
+        "/profile": {
+          "user_id": "הוסף משתמש",
+          "user_first_name_en": "שם פרטי באנגלית",
+          "user_last_name_en": "שם משפחה באנגלית",
+          "user_first_name_he": "שם פרטי עברי",
+          "user_last_name_he": "שם משפחה בעברית",
+          "user_email": "אימייל",
+          "user_dob": "תאריך לידה",
+          "edit_btn": "לַעֲרוֹך"
+        },
+        "/edit": {
+          "delete_message": "המשתמש [name] מוחק...",
+          "update_btn": "עדכון",
+          "reset_btn": "אִתחוּל",
+          "delete_btn": "לִמְחוֹק",
+          "user_first_name_en": "שם פרטי באנגלית",
+          "user_last_name_en": "שם משפחה באנגלית",
+          "user_first_name_he": "שם פרטי עברי",
+          "user_last_name_he": "שם משפחה בעברית",
+          "user_email": "אימייל",
+          "user_dob": "תאריך לידה",
+          "edit_btn": "לַעֲרוֹך"
         }
       }
     }

@@ -3,7 +3,7 @@ import { encryptStr } from '../utils/encryptStr';
 import makeUUID from '../utils/makeUUID';
 import parseDate from '../utils/parseDate';
 import users from '../mocks/jsons/users2.json';
-import { SearchParams } from '../../../types/SearchParams';
+import { SearchParams } from '../../types/SearchParams';
 // MOCK METHODS
 
 const USERS: User[] = [...users];

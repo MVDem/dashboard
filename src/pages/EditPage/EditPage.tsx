@@ -1,4 +1,9 @@
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import styles from './editPage.module.scss';
 import { ButtonUI, InputUI } from '../../UI';
 import { useState } from 'react';
@@ -6,12 +11,15 @@ import { User } from '../../types/User';
 import { OutletUsersContext } from '../ProfilePage/ProfilePage';
 import DeleteMessage from '../../UI/DeleteMessage/DeleteMessage';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { requests } from '../../components/requests/service/users';
+import { requests } from '../../requests/service/users';
+import { useTranslate } from '../../tranclations/utils/useTranslation';
 
 const userKeys = ['firstName', 'lastName', 'email', 'dob'];
 
 function EditPage() {
   const { id } = useParams();
+  const { pathname } = useLocation();
+  const { getTranslations, selectedLanguage } = useTranslate(pathname, '/edit');
   const navigate = useNavigate();
   const { users, getData } = useOutletContext<OutletUsersContext>();
   const user = users.find((user) => user.id === id);
@@ -34,12 +42,19 @@ function EditPage() {
       navigate('/users');
     }
   };
+  const userFullName =
+    user![`firstName_${selectedLanguage!}`] +
+    ' ' +
+    user![`lastName_${selectedLanguage!}`];
 
   return (
     <>
       {deleteMode ? (
         <DeleteMessage
-          message={`User ${user?.firstName} ${user?.lastName} is Deleting...`}
+          message={getTranslations({ name: 'delete_message' }).replace(
+            '[name]',
+            userFullName
+          )}
           callBack={handleDelete}
           onStop={() => setDeleteMode(false)}
         />
@@ -77,10 +92,14 @@ function EditPage() {
           </div>
           <div className={styles.controls}>
             <ButtonUI type="button" onClick={handleUpdate}>
-              update
+              {getTranslations({ name: 'update_btn' })}
             </ButtonUI>
-            <ButtonUI onClick={() => setUserEdit(user!)}>reset</ButtonUI>
-            <ButtonUI onClick={() => setDeleteMode(true)}>delete</ButtonUI>
+            <ButtonUI onClick={() => setUserEdit(user!)}>
+              {getTranslations({ name: 'reset_btn' })}
+            </ButtonUI>
+            <ButtonUI onClick={() => setDeleteMode(true)}>
+              {getTranslations({ name: 'delete_btn' })}
+            </ButtonUI>
           </div>
         </div>
       )}

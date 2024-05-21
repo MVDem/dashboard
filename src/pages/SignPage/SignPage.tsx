@@ -1,13 +1,12 @@
 import { useContext, useState } from 'react';
 import styles from './signPage.module.scss';
 import { AuthContext } from '../../context';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ButtonUI, ErrorDisplay, InputUI } from '../../UI';
 import ThemeButton from '../../UI/ThemeButton/ThemeButton';
 import LanguageButton from '../../UI/LanguageButton/LanguageButton';
-import { TranslateContext } from '../../tranclations/context';
-import { getTranclation } from '../../tranclations/utils';
-import { loginRequest } from '../../components/requests/service/auth';
+import { loginRequest } from '../../requests/service/auth';
+import { useTranslate } from '../../tranclations/utils/useTranslation';
 
 function SignPage() {
   const signinMethods = ['sign_in', 'sign_up'];
@@ -15,11 +14,8 @@ function SignPage() {
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { language } = useContext(TranslateContext);
-  const currentTarget = {
-    language,
-    page: '/sign',
-  };
+  const { pathname } = useLocation();
+  const { getTranslations } = useTranslate(pathname);
 
   const handlerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,15 +45,13 @@ function SignPage() {
       <div className={styles.signContainer}>
         <div className={styles.signWrapper}>
           <h1 className={styles.title}>
-            {getTranclation({
-              ...currentTarget,
+            {getTranslations({
               block: 'title',
               name: signinMethods[signMethod],
             })}
           </h1>
           <h2 className={styles.subTitle}>
-            {getTranclation({
-              ...currentTarget,
+            {getTranslations({
               block: 'title',
               name: 'greetings',
             })}
@@ -68,29 +62,25 @@ function SignPage() {
             onSubmit={(e) => handlerSubmit(e)}
           >
             <InputUI
-              label={getTranclation({
-                ...currentTarget,
+              label={getTranslations({
                 block: 'form',
                 name: 'user_name',
               })}
               type="text"
               name="username"
-              placeholder={getTranclation({
-                ...currentTarget,
+              placeholder={getTranslations({
                 block: 'form',
                 name: 'user_name',
               })}
             />
             <InputUI
-              label={getTranclation({
-                ...currentTarget,
+              label={getTranslations({
                 block: 'form',
                 name: 'password',
               })}
               type="password"
               name="password"
-              placeholder={getTranclation({
-                ...currentTarget,
+              placeholder={getTranslations({
                 block: 'form',
                 name: 'password',
               })}
@@ -98,8 +88,7 @@ function SignPage() {
             <ErrorDisplay text={error} isVisible={error.length > 0} />
             <ButtonUI
               type="submit"
-              children={getTranclation({
-                ...currentTarget,
+              children={getTranslations({
                 block: 'title',
                 name: signinMethods[signMethod],
               })}
@@ -108,14 +97,12 @@ function SignPage() {
           <button className={styles.extraBtn} onClick={handleChangeSignMethod}>
             {signMethod === 0 ? (
               <>
-                {getTranclation({
-                  ...currentTarget,
+                {getTranslations({
                   block: 'title',
                   name: 'isRegistered',
-                })}
+                })}{' '}
                 <span>
-                  {getTranclation({
-                    ...currentTarget,
+                  {getTranslations({
                     block: 'title',
                     name: signinMethods[1],
                   })}
@@ -123,14 +110,12 @@ function SignPage() {
               </>
             ) : (
               <>
-                {getTranclation({
-                  ...currentTarget,
+                {getTranslations({
                   block: 'title',
                   name: 'isNotRegistered',
                 })}
                 <span>
-                  {getTranclation({
-                    ...currentTarget,
+                  {getTranslations({
                     block: 'title',
                     name: signinMethods[0],
                   })}

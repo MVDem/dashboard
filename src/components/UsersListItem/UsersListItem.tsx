@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ButtonUI } from '../../UI';
 import { User } from '../../types/User';
-import { TranslateContext } from '../../tranclations/context';
-import { useContext } from 'react';
-import { getTranclation } from '../../tranclations/utils';
+import { useTranslate } from '../../tranclations/utils/useTranslation';
 
 type UsersListItemProps = {
   user: User;
@@ -11,12 +9,12 @@ type UsersListItemProps = {
 
 function UsersListItem({ user }: UsersListItemProps) {
   const navigate = useNavigate();
-  const { language, selectedLanguage } = useContext(TranslateContext);
-  const currentTarget = {
-    language,
-    page: '/users',
-    block: 'usersListItem',
-  };
+
+  const { pathname } = useLocation();
+  const { getTranslations, selectedLanguage } = useTranslate(
+    pathname,
+    'usersListItem'
+  );
 
   const handleProfileClick = () => {
     navigate(`/users/profile/${user.id}`);
@@ -40,10 +38,7 @@ function UsersListItem({ user }: UsersListItemProps) {
         </td>
         <td>
           <ButtonUI onClick={handleProfileClick}>
-            {getTranclation({
-              ...currentTarget,
-              name: 'btn',
-            })}
+            {getTranslations({ name: 'btn' })}
           </ButtonUI>
         </td>
       </tr>

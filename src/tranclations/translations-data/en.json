@@ -51,6 +51,29 @@
         },
         "usersListItem": {
           "btn": "profile..."
+        },
+        "/profile": {
+          "user_id": "Add user",
+          "user_first_name_en": "English first Name",
+          "user_last_name_en": "English last Name",
+          "user_first_name_he": "Hebrew first Name",
+          "user_last_name_he": "Hebrew last Name",
+          "user_email": "Email",
+          "user_dob": "Date of birth",
+          "edit_btn": "Edit"
+        },
+        "/edit": {
+          "delete_message": "User [name] is Deleting...",
+          "update_btn": "Update",
+          "reset_btn": "Reset",
+          "delete_btn": "Delete",
+          "user_first_name_en": "English first Name",
+          "user_last_name_en": "English last Name",
+          "user_first_name_he": "Hebrew first Name",
+          "user_last_name_he": "Hebrew last Name",
+          "user_email": "Email",
+          "user_dob": "Date of birth",
+          "edit_btn": "Edit"
         }
       }
     }

@@ -8,7 +8,7 @@ import AnimatedCard from '../../components/AnimatedCard/AnimatedCard';
 import { Outlet, useLocation } from 'react-router-dom';
 import styles from './usersPage.module.scss';
 import AddUserCard from '../../components/AddUserCard/AddUserCars';
-import { requests } from '../../components/requests/service/users';
+import { requests } from '../../requests/service/users';
 
 function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);

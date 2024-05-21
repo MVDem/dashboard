@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import styles from './searchCard.module.scss';
 import { InputUI, SelectUI, ButtonUI, ErrorDisplay } from '../../UI';
 import { SearchParams } from '../../types/SearchParams';
-import { TranslateContext } from '../../tranclations/context';
-import { getTranclation } from '../../tranclations/utils';
+import { useLocation } from 'react-router-dom';
+import { useTranslate } from '../../tranclations/utils/useTranslation';
 
 function SearchCard({
   setSearchParam,
@@ -11,12 +11,8 @@ function SearchCard({
   setSearchParam: React.Dispatch<React.SetStateAction<SearchParams>>;
 }) {
   const [errorForm, setErrorForm] = useState<string | null>(null);
-  const { language } = useContext(TranslateContext);
-  const currentTarget = {
-    language,
-    page: '/users',
-    block: 'searchCard',
-  };
+  const { pathname } = useLocation();
+  const { getTranslations } = useTranslate(pathname, 'searchCard');
 
   const hendleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,11 +31,11 @@ function SearchCard({
   const options = [
     {
       value: 'email',
-      label: getTranclation({ ...currentTarget, name: 'option_email' }),
+      label: getTranslations({ name: 'option_email' }),
     },
     {
       value: 'id',
-      label: getTranclation({ ...currentTarget, name: 'option_id' }),
+      label: getTranslations({ name: 'option_id' }),
     },
   ];
 
@@ -49,18 +45,12 @@ function SearchCard({
         <SelectUI name="searchMethod" options={options} />
         <InputUI
           name="searchValue"
-          placeholder={getTranclation({
-            ...currentTarget,
-            name: 'input_placeholder',
-          })}
+          placeholder={getTranslations({ name: 'input_placeholder' })}
           type="text"
         />
         {errorForm && <ErrorDisplay text={errorForm} />}
         <ButtonUI type="submit">
-          {getTranclation({
-            ...currentTarget,
-            name: 'submit_btn',
-          })}
+          {getTranslations({ name: 'submit_btn' })}
         </ButtonUI>
         <ButtonUI
           type="button"
@@ -71,10 +61,7 @@ function SearchCard({
               setErrorForm(null);
           }}
         >
-          {getTranclation({
-            ...currentTarget,
-            name: 'reset_btn',
-          })}
+          {getTranslations({ name: 'reset_btn' })}
         </ButtonUI>
       </form>
     </div>
